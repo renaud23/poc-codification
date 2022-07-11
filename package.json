@@ -1,16 +1,23 @@
 {
   "name": "poc-codification",
-  "homepage": "https://renaud23.github.io/poc-codification/",
+  "homepage": "",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@inseefr/lunatic": "0.3.4-experimental",
+    "@mui/material": "^5.8.7",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "gh-pages": "^4.0.0",
+    "jsoneditor": "^9.9.0",
+    "jsoneditor-react": "^3.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "string-tokenizer": "^0.0.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -38,5 +45,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "node-sass": "^7.0.1"
+  },
+  "node": {
+    "fs": false,
+    "path": false,
+    "os": false
   }
 }
