@@ -1,8 +1,7 @@
-import { useEffect, useState, useRef, useCallback } from "react";
-import useStoreIndex from "../js/store-tools/use-store-index";
-import createAppendTask from "../js/suggester-workers/append-to-index";
+import { useEffect, useState, useCallback } from "react";
+// import useStoreIndex from "../js/store-tools/use-store-index";
 
-function fetchCommunes() {
+export function fetchNafrev2() {
   return fetch("json/naf-rev2.json").then((r) => r.json());
 }
 
@@ -14,17 +13,13 @@ function fetchCommunes() {
 //   post(store.name, entities.length);
 // }
 
-function handleChange() {}
-
 function App({ storeInfo: siProps }) {
-  const db = useStoreIndex(siProps, "1");
+  // const db = useStoreIndex(siProps, "1");
   const [content, setContent] = useState(JSON.stringify(siProps, null, 2));
   const [storeInfo, setStoreInfo] = useState(siProps);
 
   useEffect(function () {
-    (async function () {
-      const communes = await fetchCommunes();
-    })();
+    (async function () {})();
   }, []);
 
   const onChangeContent = useCallback(function (e) {
@@ -49,13 +44,15 @@ function App({ storeInfo: siProps }) {
     }
   }, []);
 
+  console.log(storeInfo);
+
   return (
     <div>
       <h1>Hackaton codification</h1>
       <h2>Editer la configation</h2>
       <h2>Charger les données</h2>
       <h2>Créer l'index</h2>
-      <h2></h2>
+      <h2>Effectuer une recherche</h2>
       <input type="file" onChange={changeFile} accept=".json" />
       <button onClick={() => null}>Load!</button>
       <div className="store-editor" style={{ width: "600px" }}>
