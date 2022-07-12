@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 //
-function DataLoad() {
+function DataLoad({ setData }) {
   const [content, setContent] = useState(undefined);
   //   const [data, setData] = useState(undefined);
 
@@ -38,6 +38,7 @@ function DataLoad() {
                   "ERROR"
                 );
               }
+              setData(jsonified);
             });
           } else {
             appendLog(
@@ -48,7 +49,7 @@ function DataLoad() {
         }
       } catch (e) {}
     },
-    [content, appendLog]
+    [content, appendLog, setData]
   );
 
   const changeFile = useCallback(function (input) {

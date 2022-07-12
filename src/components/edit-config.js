@@ -3,20 +3,24 @@ import { useState, useCallback } from "react";
 function EditConfig({ storeInfo: siProps, setStoreInfo }) {
   const [content, setContent] = useState(JSON.stringify(siProps, null, 2));
 
-  const changeFile = useCallback(function (input) {
-    const files = input.target.files;
-    if (files && files.length > 0) {
-      const file = files[0];
-      const reader = new FileReader();
+  const changeFile = useCallback(
+    function (input) {
+      const files = input.target.files;
+      if (files && files.length > 0) {
+        const file = files[0];
+        const reader = new FileReader();
 
-      reader.onload = (res) => {
-        setContent(res.target.result); // Print file contents
-      };
-      reader.onerror = (err) => console.log(err);
+        reader.onload = (res) => {
+          setContent(res.target.result); // Print file contents
+          setStoreInfo(JSON.parse(res.target.result));
+        };
+        reader.onerror = (err) => console.log(err);
 
-      reader.readAsText(file);
-    }
-  }, []);
+        reader.readAsText(file);
+      }
+    },
+    [setStoreInfo]
+  );
 
   const onChangeContent = useCallback(
     function (e) {

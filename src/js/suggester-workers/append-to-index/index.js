@@ -1,1 +1,1 @@
-export { default as createAppendTask } from "./create-append-task";
+export { default } from "./create-append-task";
