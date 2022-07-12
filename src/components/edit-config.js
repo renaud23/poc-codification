@@ -1,0 +1,50 @@
+import { useState, useCallback } from "react";
+
+function EditConfig({ storeInfo: siProps, setStoreInfo }) {
+  const [content, setContent] = useState(JSON.stringify(siProps, null, 2));
+
+  const changeFile = useCallback(function (input) {
+    const files = input.target.files;
+    if (files && files.length > 0) {
+      const file = files[0];
+      const reader = new FileReader();
+
+      reader.onload = (res) => {
+        setContent(res.target.result); // Print file contents
+      };
+      reader.onerror = (err) => console.log(err);
+
+      reader.readAsText(file);
+    }
+  }, []);
+
+  const onChangeContent = useCallback(
+    function (e) {
+      setContent(e.target.value);
+      try {
+        setStoreInfo(JSON.parse(e.target.value));
+      } catch (e) {
+        console.error(e);
+      }
+    },
+    [setStoreInfo]
+  );
+
+  return (
+    <>
+      <h2>Editer la configuration</h2>
+      <input type="file" onChange={changeFile} accept=".json" />
+      <div className="store-editor" style={{ width: "600px" }}>
+        <textarea
+          spellCheck="false"
+          rows="30"
+          cols="63"
+          value={content}
+          onChange={onChangeContent}
+        ></textarea>
+      </div>
+    </>
+  );
+}
+
+export default EditConfig;

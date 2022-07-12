@@ -1,4 +1,6 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
+import EditConfig from "./edit-config";
+import DataLoad from "./data-load";
 // import useStoreIndex from "../js/store-tools/use-store-index";
 
 export function fetchNafrev2() {
@@ -15,33 +17,10 @@ export function fetchNafrev2() {
 
 function App({ storeInfo: siProps }) {
   // const db = useStoreIndex(siProps, "1");
-  const [content, setContent] = useState(JSON.stringify(siProps, null, 2));
   const [storeInfo, setStoreInfo] = useState(siProps);
 
   useEffect(function () {
     (async function () {})();
-  }, []);
-
-  const onChangeContent = useCallback(function (e) {
-    setContent(e.target.value);
-    try {
-      setStoreInfo(JSON.parse(e.target.value));
-    } catch (e) {}
-  }, []);
-
-  const changeFile = useCallback(function (input) {
-    const files = input.target.files;
-    if (files && files.length > 0) {
-      const file = files[0];
-      const reader = new FileReader();
-
-      reader.onload = (res) => {
-        setContent(res.target.result); // Print file contents
-      };
-      reader.onerror = (err) => console.log(err);
-
-      reader.readAsText(file);
-    }
   }, []);
 
   console.log(storeInfo);
@@ -49,20 +28,13 @@ function App({ storeInfo: siProps }) {
   return (
     <div>
       <h1>Hackaton codification</h1>
-      <h2>Editer la configation</h2>
+      <EditConfig storeInfo={storeInfo} setStoreInfo={setStoreInfo} />
       <h2>Charger les données</h2>
+      <DataLoad />
       <h2>Créer l'index</h2>
       <h2>Effectuer une recherche</h2>
-      <input type="file" onChange={changeFile} accept=".json" />
+
       <button onClick={() => null}>Load!</button>
-      <div className="store-editor" style={{ width: "600px" }}>
-        <textarea
-          rows="30"
-          cols="63"
-          value={content}
-          onChange={onChangeContent}
-        ></textarea>
-      </div>
     </div>
   );
 }
