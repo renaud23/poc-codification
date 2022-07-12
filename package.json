@@ -1,6 +1,6 @@
 {
   "name": "poc-codification",
-  "homepage": "",
+  "homepage": "/poc-codification",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
