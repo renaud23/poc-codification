@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef, useCallback } from "react";
-import Input from "@mui/material/Input";
 import useStoreIndex from "../js/store-tools/use-store-index";
 import createAppendTask from "../js/suggester-workers/append-to-index";
 
@@ -52,6 +51,11 @@ function App({ storeInfo: siProps }) {
 
   return (
     <div>
+      <h1>Hackaton codification</h1>
+      <h2></h2>
+      <h2></h2>
+      <h2></h2>
+      <h2></h2>
       <input type="file" onChange={changeFile} accept=".json" />
       <button onClick={() => null}>Load!</button>
       <div className="store-editor" style={{ width: "600px" }}>
