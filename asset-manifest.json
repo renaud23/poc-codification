@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/static/js/main.524c52f6.js",
-    "index.html": "/index.html",
-    "main.524c52f6.js.map": "/static/js/main.524c52f6.js.map"
+    "main.js": "/poc-codification/static/js/main.524c52f6.js",
+    "index.html": "/poc-codification/index.html",
+    "main.524c52f6.js.map": "/poc-codification/static/js/main.524c52f6.js.map"
   },
   "entrypoints": [
     "static/js/main.524c52f6.js"
