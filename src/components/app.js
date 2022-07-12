@@ -52,9 +52,9 @@ function App({ storeInfo: siProps }) {
   return (
     <div>
       <h1>Hackaton codification</h1>
-      <h2></h2>
-      <h2></h2>
-      <h2></h2>
+      <h2>Editer la configation</h2>
+      <h2>Charger les données</h2>
+      <h2>Créer l'index</h2>
       <h2></h2>
       <input type="file" onChange={changeFile} accept=".json" />
       <button onClick={() => null}>Load!</button>
