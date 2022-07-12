@@ -1,7 +1,5 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import Input from "@mui/material/Input";
-import { JsonEditor as Editor } from "jsoneditor-react";
-import "jsoneditor-react/es/editor.min.css";
 import useStoreIndex from "../js/store-tools/use-store-index";
 import createAppendTask from "../js/suggester-workers/append-to-index";
 
@@ -19,13 +17,22 @@ function fetchCommunes() {
 
 function handleChange() {}
 
-function App({ storeInfo }) {
-  const db = useStoreIndex(storeInfo, "1");
+function App({ storeInfo: siProps }) {
+  const db = useStoreIndex(siProps, "1");
+  const [content, setContent] = useState(JSON.stringify(siProps, null, 2));
+  const [storeInfo, setStoreInfo] = useState(siProps);
 
   useEffect(function () {
     (async function () {
       const communes = await fetchCommunes();
     })();
+  }, []);
+
+  const onChangeContent = useCallback(function (e) {
+    setContent(e.target.value);
+    try {
+      setStoreInfo(JSON.parse(e.target.value));
+    } catch (e) {}
   }, []);
 
   const changeFile = useCallback(function (input) {
@@ -35,7 +42,7 @@ function App({ storeInfo }) {
       const reader = new FileReader();
 
       reader.onload = (res) => {
-        console.log(res.target.result); // Print file contents
+        setContent(res.target.result); // Print file contents
       };
       reader.onerror = (err) => console.log(err);
 
@@ -48,7 +55,12 @@ function App({ storeInfo }) {
       <input type="file" onChange={changeFile} accept=".json" />
       <button onClick={() => null}>Load!</button>
       <div className="store-editor" style={{ width: "600px" }}>
-        <Editor value={storeInfo} onChange={handleChange} />
+        <textarea
+          rows="30"
+          cols="63"
+          value={content}
+          onChange={onChangeContent}
+        ></textarea>
       </div>
     </div>
   );
