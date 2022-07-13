@@ -153,9 +153,9 @@ function Search({ storeInfo, version }) {
 
   return (
     <>
+      <Tree entities={entities} />
       <input type="text" value={search} onChange={onChange} />
       <button onClick={onSearch}>Search!</button>
-      <Tree entities={entities} />
     </>
   );
 }
