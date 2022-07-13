@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/poc-codification/static/css/main.4e34c6b8.css",
-    "main.js": "/poc-codification/static/js/main.48f1346c.js",
+    "main.css": "/poc-codification/static/css/main.adebb315.css",
+    "main.js": "/poc-codification/static/js/main.bfa4636b.js",
     "index.html": "/poc-codification/index.html",
-    "main.4e34c6b8.css.map": "/poc-codification/static/css/main.4e34c6b8.css.map",
-    "main.48f1346c.js.map": "/poc-codification/static/js/main.48f1346c.js.map"
+    "main.adebb315.css.map": "/poc-codification/static/css/main.adebb315.css.map",
+    "main.bfa4636b.js.map": "/poc-codification/static/js/main.bfa4636b.js.map"
   },
   "entrypoints": [
-    "static/css/main.4e34c6b8.css",
-    "static/js/main.48f1346c.js"
+    "static/css/main.adebb315.css",
+    "static/js/main.bfa4636b.js"
   ]
 }
