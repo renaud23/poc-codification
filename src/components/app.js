@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import EditConfig from "./edit-config";
 import DataLoad from "./data-load";
 import CreateIndex from "./create-index";
+import Search from "./search";
 import "./app.scss";
 
 export function fetchNafrev2() {
@@ -19,12 +20,14 @@ function App({ storeInfo: siProps }) {
   return (
     <div className="poc-codification">
       <h1>Hackaton codification</h1>
+      <h2>Editer la configuration</h2>
       <EditConfig storeInfo={storeInfo} setStoreInfo={setStoreInfo} />
       <h2>Charger les données</h2>
       <DataLoad setData={setData} />
       <h2>Créer l'index</h2>
-      <CreateIndex data={data} storeInfo={storeInfo} />
+      <CreateIndex data={data} storeInfo={storeInfo} version="1" />
       <h2>Effectuer une recherche</h2>
+      <Search storeInfo={storeInfo} version="1" />
     </div>
   );
 }

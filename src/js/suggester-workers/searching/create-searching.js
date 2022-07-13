@@ -1,4 +1,4 @@
-import createWorker from "../create-worker";
+import { createWorker } from "../create-worker";
 
 const WORKER_PATH =
   process.env.LUNATIC_SEARCH_WORKER_PATH ||

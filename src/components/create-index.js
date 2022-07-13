@@ -2,6 +2,7 @@ import { useCallback, useState, useEffect } from "react";
 import useStoreIndex from "../js/store-tools/use-store-index";
 import { clearStoreData } from "../js/store-tools";
 import createAppendTask from "../js/suggester-workers/append-to-index";
+import updateStoreInfo from "../js/store-tools/update-store-info";
 
 function Progress({ percent }) {
   return (
@@ -15,7 +16,7 @@ function Progress({ percent }) {
   );
 }
 
-function ReadyToLoad({ storeInfo, data }) {
+function ReadyToLoad({ storeInfo, data, version }) {
   const [disabled, setDisabled] = useState(false);
   const [start, setStart] = useState(false);
   const [percent, setPercent] = useState(undefined);
@@ -39,8 +40,9 @@ function ReadyToLoad({ storeInfo, data }) {
       if (start) {
         let abort_ = () => null;
         (async function () {
-          clearStoreData(db);
-          const [index, abort] = createAppendTask(storeInfo, "1", log);
+          await clearStoreData(db);
+          await updateStoreInfo(db, storeInfo);
+          const [index, abort] = createAppendTask(storeInfo, version, log);
           abort_ = abort;
 
           await index(data);
@@ -50,7 +52,7 @@ function ReadyToLoad({ storeInfo, data }) {
         return () => abort_();
       }
     },
-    [start, data, db, storeInfo]
+    [start, data, db, storeInfo, version]
   );
 
   return (

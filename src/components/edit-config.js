@@ -36,7 +36,6 @@ function EditConfig({ storeInfo: siProps, setStoreInfo }) {
 
   return (
     <>
-      <h2>Editer la configuration</h2>
       <input type="file" onChange={changeFile} accept=".json" />
       <div className="store-editor" style={{ width: "600px" }}>
         <textarea

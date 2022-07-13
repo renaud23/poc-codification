@@ -18,4 +18,48 @@
       left: 1px;
     }
   }
+
+  .tree {
+    .clear-list {
+      list-style: none;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      display: block;
+    }
+
+    .tree-label {
+      display: block;
+    }
+
+    .tree-content {
+      background-color: aqua;
+      height: 0;
+
+      &.expended {
+        height: auto;
+      }
+    }
+
+    .toggle {
+      cursor: pointer;
+    }
+
+    .simple-label {
+      height: 0px;
+
+      &.expended {
+        height: auto;
+      }
+    }
+
+    .indent {
+      display: inline-block;
+      height: 4px;
+      width: 18px;
+    }
+  }
 }
