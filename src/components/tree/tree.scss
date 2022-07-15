@@ -1,0 +1,39 @@
+.tree {
+  background-color: rgb(30, 30, 30);
+  color: bisque;
+  font-family: Tahoma, sans-serif;
+
+  padding: 12px 5px;
+
+  .leaf {
+    display: inline-block;
+    height: 18px;
+
+    .etiquette {
+    }
+
+    input {
+      border: none;
+      line-height: 18px;
+    }
+
+    .value {
+      .undefined {
+        color: red;
+      }
+      .string {
+        .quote {
+          color: darksalmon;
+          font-weight: bold;
+        }
+        .content {
+          color: darksalmon;
+        }
+      }
+
+      .default {
+        color: palegreen;
+      }
+    }
+  }
+}

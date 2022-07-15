@@ -4,15 +4,15 @@ import Entry from "./entry";
 import Indent from "./indent";
 import Toggle from "./toggle";
 
-function Node({ entity, name, level, path }) {
-  const [expended, setExpended] = useState(false);
+function Node({ entity, name, level, path, onChange, editable, expended: ex }) {
+  const [expended, setExpended] = useState(ex);
   const toggle = useCallback(
     function () {
       setExpended(!expended);
     },
     [expended]
   );
-
+  //
   const content = Object.entries(entity).map(function ([name, entry], i) {
     return (
       <li key={i}>
@@ -20,13 +20,22 @@ function Node({ entity, name, level, path }) {
           value={entry}
           name={name}
           level={level}
-          expended={expended}
-          path={path}
+          path={Array.isArray(entry) ? path : `${path}.${name}`}
+          onChange={onChange}
+          editable={editable}
         />
       </li>
     );
   });
-
+  if (!expended) {
+    return (
+      <div className="tree-label">
+        <Indent index={level} />
+        <Toggle expended={false} toggle={toggle} />
+        {name}
+      </div>
+    );
+  }
   return (
     <>
       <div className="tree-label">

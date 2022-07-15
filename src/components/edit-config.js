@@ -48,7 +48,7 @@ function EditConfig({ storeInfo: siProps, setStoreInfo }) {
           onChange={onChangeContent}
         ></textarea>
       </div>
-      <Tree entities={siProps} />
+      <Tree entities={siProps} editable={true} />
     </>
   );
 }

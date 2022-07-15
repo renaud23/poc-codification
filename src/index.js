@@ -5,7 +5,21 @@ import App from "./components/app";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const storeInfo = {
-  name: "store-test",
+  name: "naf-rev2-stop",
+  fields: [
+    {
+      name: "label",
+      rules: ["[\\w]+"],
+      language: "French",
+      min: 2,
+    },
+    { name: "id" },
+  ],
+  queryParser: {
+    type: "tokenized",
+    params: { language: "French", pattern: "[\\w.]+" },
+  },
+  version: "1",
 };
 
 root.render(

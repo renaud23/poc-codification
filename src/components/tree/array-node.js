@@ -4,8 +4,16 @@ import Entry from "./entry";
 import Indent from "./indent";
 import Toggle from "./toggle";
 
-function ArrayNode({ array, name, level, path }) {
-  const [expended, setExpended] = useState(false);
+function ArrayNode({
+  array,
+  name,
+  level,
+  path,
+  onChange,
+  editable,
+  expended: ex,
+}) {
+  const [expended, setExpended] = useState(ex);
   const toggle = useCallback(
     function () {
       setExpended(!expended);
@@ -20,12 +28,23 @@ function ArrayNode({ array, name, level, path }) {
           value={entry}
           name={i}
           level={level}
-          expended={expended}
-          path={path}
+          path={`${path}.${name}[${i}]`}
+          onChange={onChange}
+          editable={editable}
         />
       </li>
     );
   });
+
+  if (!expended) {
+    return (
+      <div className="tree-label">
+        <Indent index={level} />
+        <Toggle expended={false} toggle={toggle} />
+        {`Array[${name}]`}
+      </div>
+    );
+  }
 
   return (
     <>
