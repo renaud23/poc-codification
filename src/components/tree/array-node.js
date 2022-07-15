@@ -4,7 +4,7 @@ import Entry from "./entry";
 import Indent from "./indent";
 import Toggle from "./toggle";
 
-function ArrayNode({ array, name, level }) {
+function ArrayNode({ array, name, level, path }) {
   const [expended, setExpended] = useState(false);
   const toggle = useCallback(
     function () {
@@ -16,7 +16,13 @@ function ArrayNode({ array, name, level }) {
   const content = array.map(function (entry, i) {
     return (
       <li key={i}>
-        <Entry value={entry} name={i} level={level} expended={expended} />
+        <Entry
+          value={entry}
+          name={i}
+          level={level}
+          expended={expended}
+          path={path}
+        />
       </li>
     );
   });

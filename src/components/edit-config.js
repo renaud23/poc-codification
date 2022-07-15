@@ -1,5 +1,7 @@
 import { useState, useCallback } from "react";
 
+import Tree from "./tree";
+
 function EditConfig({ storeInfo: siProps, setStoreInfo }) {
   const [content, setContent] = useState(JSON.stringify(siProps, null, 2));
 
@@ -46,6 +48,7 @@ function EditConfig({ storeInfo: siProps, setStoreInfo }) {
           onChange={onChangeContent}
         ></textarea>
       </div>
+      <Tree entities={siProps} />
     </>
   );
 }

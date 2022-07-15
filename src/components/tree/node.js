@@ -4,7 +4,7 @@ import Entry from "./entry";
 import Indent from "./indent";
 import Toggle from "./toggle";
 
-function Node({ entity, name, level }) {
+function Node({ entity, name, level, path }) {
   const [expended, setExpended] = useState(false);
   const toggle = useCallback(
     function () {
@@ -16,7 +16,13 @@ function Node({ entity, name, level }) {
   const content = Object.entries(entity).map(function ([name, entry], i) {
     return (
       <li key={i}>
-        <Entry value={entry} name={name} level={level} expended={expended} />
+        <Entry
+          value={entry}
+          name={name}
+          level={level}
+          expended={expended}
+          path={path}
+        />
       </li>
     );
   });

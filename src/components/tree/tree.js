@@ -1,12 +1,12 @@
 import classnames from "classnames";
-import Node from "./node";
+import Entry from "./entry";
 
 function Tree({ entities }) {
-  const content = entities.map(function (entity, i) {
-    return <Node entity={entity} name={i} key={i} level={0} />;
-  });
-
-  return <ul className={classnames("tree", "clear-list")}>{content}</ul>;
+  return (
+    <div className={classnames("tree")}>
+      <Entry name="" path="" value={entities} level={0} expended={true} />
+    </div>
+  );
 }
 
 export default Tree;

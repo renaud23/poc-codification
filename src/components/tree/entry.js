@@ -1,8 +1,8 @@
-import Indent from "./indent";
 import Node from "./node";
+import Leaf from "./leaf";
 import ArrayNode from "./array-node";
 
-function Entry({ name, value, level, expended }) {
+function Entry({ name, value, level, expended, path }) {
   if (!expended) {
     return null;
   }
@@ -13,21 +13,23 @@ function Entry({ name, value, level, expended }) {
         name={name}
         level={level + 1}
         expended={expended}
+        path={path}
       />
     );
   }
   if (typeof value === "object") {
     return (
-      <Node entity={value} name={name} level={level + 1} expended={expended} />
+      <Node
+        entity={value}
+        name={name}
+        level={level + 1}
+        expended={expended}
+        path={`${path}`}
+      />
     );
   }
 
-  return (
-    <>
-      <Indent index={level + 1} />
-      <span>{`${name} : ${value}`}</span>
-    </>
-  );
+  return <Leaf level={level} name={name} path={path} value={value} />;
 }
 
 export default Entry;
