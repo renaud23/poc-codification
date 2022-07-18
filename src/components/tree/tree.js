@@ -1,24 +1,45 @@
 import { useCallback, useState, useEffect } from "react";
 import classnames from "classnames";
 import Entry from "./entry";
+import { TYPES } from "./etiquette";
 import "./tree.scss";
 
 function empty(args) {
   console.log(args);
 }
 
+function isDisponibleName(entry, name) {
+  return Object.keys(entry).reduce(function (status, current) {
+    return status && current !== name;
+  }, true);
+}
+
+function updateEntry(entry, { name, value, nameOrValue }) {
+  if (nameOrValue === TYPES.name) {
+    if (isDisponibleName(entry, value)) {
+      const next = { ...entry };
+      next[value] = next[name];
+      delete next[name];
+      return next;
+    }
+  }
+  if (nameOrValue === TYPES.value) {
+  }
+  return entry;
+}
+
 function crawl(entry, { paths, name, value, nameOrValue }) {
   const [current, ...rest] = paths;
-  // console.log({ entry, current });
+
   if (current) {
     const reg = current.match(/(.*)\[([^)]+)\]/s);
+    // array element
     if (reg) {
       const subName = reg[1];
       const index = reg[2];
 
       if (Array.isArray(entry)) {
         const next = [...entry];
-        console.log("ici", name, value);
         next["root" ? index : name] = crawl(
           subName === "root" ? entry[index] : entry[subName][index],
           {
@@ -43,16 +64,16 @@ function crawl(entry, { paths, name, value, nameOrValue }) {
       }
     }
 
-    //
     const subEntry = entry[current];
-
+    // array node
     if (Array.isArray(subEntry)) {
       // change array name
+      // TODO valider le choix
       const next = { ...entry, [value]: subEntry };
       delete next[current];
       return next;
     }
-
+    // node
     if (typeof subEntry === "object") {
       return {
         ...entry,
@@ -60,11 +81,8 @@ function crawl(entry, { paths, name, value, nameOrValue }) {
       };
     }
   }
-
-  return entry;
-  // if (rest.length) {
-  //   return crawl(entry, { paths: rest, name, value, nameOrValue });
-  // }
+  // leaf
+  return updateEntry(entry, { name, value, nameOrValue });
 }
 
 function updateValue(entry, { path, name, value, nameOrValue }) {
@@ -90,10 +108,10 @@ function Tree({
   const handleChange = useCallback(
     function ({ path, name, value, nameOrValue }) {
       // onChange({ path, name, value, nameOrValue });
-      const next = updateValue(entities, { path, name, value, nameOrValue });
-      console.log({ next });
+      const next = updateValue(clone, { path, name, value, nameOrValue });
+      setClone(next);
     },
-    [entities]
+    [clone]
   );
 
   return (

@@ -35,7 +35,7 @@ function Editable({
     function (e) {
       if (e.key === "Enter") {
         setUpdate(false);
-        onChange({ path, name, value, nameOrValue });
+        onChange({ path: path.slice(1), name, value, nameOrValue });
       }
     },
     [setUpdate, onChange, path, value, nameOrValue, name]

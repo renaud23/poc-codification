@@ -5,8 +5,6 @@ import Indent from "./indent";
 import Toggle from "./toggle";
 import Etiquette from "./etiquette";
 
-function update() {}
-
 function Node({
   entity,
   name,
@@ -47,9 +45,9 @@ function Node({
         <Toggle expended={expended} toggle={toggle} />
         <Etiquette
           name={name}
-          path={path}
+          path={`${path}`}
           value={name}
-          onChange={update}
+          onChange={onChange}
           editable={editable && !arrayEntry}
         >
           {name}

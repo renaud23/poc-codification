@@ -1,5 +1,6 @@
 import Indent from "../indent";
 import Etiquette from "../etiquette";
+import { TYPES } from "../etiquette";
 
 function Content({ value }) {
   if (value === undefined) {
@@ -36,6 +37,7 @@ function Leaf({ name, path, value, level, onChange, editable, arrayEntry }) {
           path={path}
           name={name}
           editable={editable && !arrayEntry}
+          nameOrValue={TYPES.name}
         >{`${name} :`}</Etiquette>
         <Etiquette
           value={value}
@@ -43,6 +45,7 @@ function Leaf({ name, path, value, level, onChange, editable, arrayEntry }) {
           path={path}
           name={name}
           editable={editable}
+          nameOrValue={TYPES.value}
         >
           <Value
             value={value}

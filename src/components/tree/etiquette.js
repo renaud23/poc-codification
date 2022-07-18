@@ -1,6 +1,11 @@
 import { useState } from "react";
 import Updatable from "./updatable";
 
+export const TYPES = {
+  name: "etiquette/name",
+  value: "etiquette/value",
+};
+
 function Etiquette({
   name,
   path,
