@@ -1,5 +1,3 @@
-import { useState } from "react";
-import Updatable from "../updatable";
 import Indent from "../indent";
 import Etiquette from "../etiquette";
 
@@ -19,32 +17,15 @@ function Content({ value }) {
   return <span className="default">{value}</span>;
 }
 
-function Value({ value, onChange, path, name, editable = false }) {
-  const [update, setUpdate] = useState(false);
-  if (update && editable) {
-    return (
-      <Updatable
-        value={value}
-        setUpdate={setUpdate}
-        onChange={onChange}
-        path={path}
-        name={name}
-      />
-    );
-  }
+function Value({ value }) {
   return (
-    <span
-      className="value"
-      onClick={function (e) {
-        setUpdate(true);
-      }}
-    >
-      <Content value={value} setUpdate={setUpdate} />
+    <span className="value">
+      <Content value={value} />
     </span>
   );
 }
 
-function Leaf({ name, path, value, level, onChange, editable }) {
+function Leaf({ name, path, value, level, onChange, editable, arrayEntry }) {
   return (
     <>
       <Indent index={level + 1} />
@@ -54,15 +35,23 @@ function Leaf({ name, path, value, level, onChange, editable }) {
           onChange={onChange}
           path={path}
           name={name}
-          editable={editable}
+          editable={editable && !arrayEntry}
         >{`${name} :`}</Etiquette>
-        <Value
+        <Etiquette
           value={value}
           onChange={onChange}
           path={path}
           name={name}
           editable={editable}
-        />
+        >
+          <Value
+            value={value}
+            onChange={onChange}
+            path={path}
+            name={name}
+            editable={editable}
+          />
+        </Etiquette>
       </span>
     </>
   );

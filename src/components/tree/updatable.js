@@ -1,6 +1,6 @@
 import { useCallback, useState, useEffect, useRef } from "react";
 
-function UpdateLeaf({ value: vfp, setUpdate, onChange, path, name }) {
+function Editable({ value: vfp, setUpdate, onChange, path, name, etiquette }) {
   const [value, setValue] = useState(vfp);
   const ref = useRef();
 
@@ -10,7 +10,7 @@ function UpdateLeaf({ value: vfp, setUpdate, onChange, path, name }) {
         const { current } = ref;
         if (!current.contains(e.target)) {
           setUpdate(false);
-          onChange(path, name, value);
+          onChange({ path, name, value, etiquette });
         }
       }
 
@@ -20,7 +20,7 @@ function UpdateLeaf({ value: vfp, setUpdate, onChange, path, name }) {
         document.removeEventListener("mousedown", onClick);
       };
     },
-    [setUpdate, ref, onChange, path, value, name]
+    [setUpdate, ref, onChange, path, value, name, etiquette]
   );
 
   const onKeyDown = useCallback(
@@ -51,4 +51,4 @@ function UpdateLeaf({ value: vfp, setUpdate, onChange, path, name }) {
   );
 }
 
-export default UpdateLeaf;
+export default Editable;

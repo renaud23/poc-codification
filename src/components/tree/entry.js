@@ -10,10 +10,8 @@ function Entry({
   path = "",
   onChange,
   editable,
+  arrayEntry,
 }) {
-  // if (!expended) {
-  //   return null;
-  // }
   if (Array.isArray(value)) {
     return (
       <ArrayNode
@@ -24,6 +22,7 @@ function Entry({
         path={path}
         onChange={onChange}
         editable={editable}
+        arrayEntry={arrayEntry}
       />
     );
   }
@@ -37,6 +36,7 @@ function Entry({
         path={path}
         onChange={onChange}
         editable={editable}
+        arrayEntry={arrayEntry}
       />
     );
   }
@@ -49,6 +49,7 @@ function Entry({
       value={value}
       onChange={onChange}
       editable={editable}
+      arrayEntry={arrayEntry}
     />
   );
 }

@@ -7,7 +7,16 @@ import Etiquette from "./etiquette";
 
 function update() {}
 
-function Node({ entity, name, level, path, onChange, editable, expended: ex }) {
+function Node({
+  entity,
+  name,
+  level,
+  path,
+  onChange,
+  editable,
+  expended: ex,
+  arrayEntry,
+}) {
   const [expended, setExpended] = useState(ex);
   const toggle = useCallback(
     function () {
@@ -41,7 +50,7 @@ function Node({ entity, name, level, path, onChange, editable, expended: ex }) {
           path={path}
           value={name}
           onChange={update}
-          editable={editable}
+          editable={editable && !arrayEntry}
         >
           {name}
         </Etiquette>

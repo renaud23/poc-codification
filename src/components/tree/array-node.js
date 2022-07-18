@@ -17,6 +17,7 @@ function ArrayNode({
   onChange,
   editable,
   expended: ex,
+  arrayEntry,
 }) {
   const [expended, setExpended] = useState(ex);
   const toggle = useCallback(
@@ -36,6 +37,7 @@ function ArrayNode({
           path={`${path}.${name}[${i}]`}
           onChange={onChange}
           editable={editable}
+          arrayEntry={true}
         />
       </li>
     );
@@ -51,7 +53,7 @@ function ArrayNode({
           path={path}
           value={name}
           onChange={update}
-          editable={editable}
+          editable={editable && !arrayEntry}
         >{`Array[${name}]`}</Etiquette>
       </div>
       <ul className={classnames("clear-list", "tree-content", { expended })}>
