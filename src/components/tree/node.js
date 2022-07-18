@@ -3,6 +3,9 @@ import { useCallback, useState } from "react";
 import Entry from "./entry";
 import Indent from "./indent";
 import Toggle from "./toggle";
+import Etiquette from "./etiquette";
+
+function update() {}
 
 function Node({ entity, name, level, path, onChange, editable, expended: ex }) {
   const [expended, setExpended] = useState(ex);
@@ -27,24 +30,24 @@ function Node({ entity, name, level, path, onChange, editable, expended: ex }) {
       </li>
     );
   });
-  if (!expended) {
-    return (
-      <div className="tree-label">
-        <Indent index={level} />
-        <Toggle expended={false} toggle={toggle} />
-        {name}
-      </div>
-    );
-  }
+
   return (
     <>
       <div className="tree-label">
         <Indent index={level} />
         <Toggle expended={expended} toggle={toggle} />
-        {name}
+        <Etiquette
+          name={name}
+          path={path}
+          value={name}
+          onChange={update}
+          editable={editable}
+        >
+          {name}
+        </Etiquette>
       </div>
       <ul className={classnames("clear-list", "tree-content", { expended })}>
-        {content}
+        {expended ? content : null}
       </ul>
     </>
   );

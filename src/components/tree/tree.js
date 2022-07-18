@@ -1,9 +1,10 @@
+import { useCallback, useState, useEffect } from "react";
 import classnames from "classnames";
 import Entry from "./entry";
 import "./tree.scss";
 
-function empty(path, value) {
-  console.log({ path, value });
+function empty(...args) {
+  console.log(args);
 }
 
 function Tree({
@@ -12,15 +13,31 @@ function Tree({
   editable = false,
   expended = false,
 }) {
+  const [clone, setClone] = useState(entities);
+
+  useEffect(
+    function () {
+      setClone(entities);
+    },
+    [entities]
+  );
+
+  const handleChange = useCallback(
+    function ({ path, name, value, etiquette }) {
+      onChange(path, value);
+    },
+    [onChange]
+  );
+
   return (
     <div className={classnames("tree")}>
       <Entry
         name="root"
         path=""
-        value={entities}
+        value={clone}
         level={0}
         expended={expended}
-        onChange={onChange}
+        onChange={handleChange}
         editable={editable}
       />
     </div>

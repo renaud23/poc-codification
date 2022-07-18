@@ -3,6 +3,11 @@ import classnames from "classnames";
 import Entry from "./entry";
 import Indent from "./indent";
 import Toggle from "./toggle";
+import Etiquette from "./etiquette";
+
+function update(path, name, value) {
+  console.log("array", { path, name, value });
+}
 
 function ArrayNode({
   array,
@@ -36,25 +41,21 @@ function ArrayNode({
     );
   });
 
-  if (!expended) {
-    return (
-      <div className="tree-label">
-        <Indent index={level} />
-        <Toggle expended={false} toggle={toggle} />
-        {`Array[${name}]`}
-      </div>
-    );
-  }
-
   return (
     <>
       <div className="tree-label">
         <Indent index={level} />
         <Toggle expended={expended} toggle={toggle} />
-        {`Array[${name}]`}
+        <Etiquette
+          name={name}
+          path={path}
+          value={name}
+          onChange={update}
+          editable={editable}
+        >{`Array[${name}]`}</Etiquette>
       </div>
       <ul className={classnames("clear-list", "tree-content", { expended })}>
-        {content}
+        {expended ? content : null}
       </ul>
     </>
   );

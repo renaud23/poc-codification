@@ -16,9 +16,11 @@ function Search({ storeInfo, version }) {
     },
     [storeInfo, version]
   );
+
   const onChange = useCallback(function (e) {
     setSearch(e.target.value);
   }, []);
+
   const onSearch = useCallback(
     function () {
       (async function () {
