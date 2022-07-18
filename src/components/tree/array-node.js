@@ -5,10 +5,6 @@ import Indent from "./indent";
 import Toggle from "./toggle";
 import Etiquette from "./etiquette";
 
-function update(path, name, value) {
-  console.log("array", { path, name, value });
-}
-
 function ArrayNode({
   array,
   name,
@@ -50,9 +46,9 @@ function ArrayNode({
         <Toggle expended={expended} toggle={toggle} />
         <Etiquette
           name={name}
-          path={path}
+          path={`${path}.${name}`}
           value={name}
-          onChange={update}
+          onChange={onChange}
           editable={editable && !arrayEntry}
         >{`Array[${name}]`}</Etiquette>
       </div>

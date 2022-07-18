@@ -1,7 +1,15 @@
 import { useCallback, useState, useEffect, useRef } from "react";
 
-function Editable({ value: vfp, setUpdate, onChange, path, name, etiquette }) {
+function Editable({
+  value: vfp,
+  setUpdate,
+  onChange,
+  path,
+  name,
+  nameOrValue,
+}) {
   const [value, setValue] = useState(vfp);
+
   const ref = useRef();
 
   useEffect(
@@ -10,7 +18,7 @@ function Editable({ value: vfp, setUpdate, onChange, path, name, etiquette }) {
         const { current } = ref;
         if (!current.contains(e.target)) {
           setUpdate(false);
-          onChange({ path, name, value, etiquette });
+          onChange({ path: path.slice(1), name, value, nameOrValue });
         }
       }
 
@@ -20,17 +28,17 @@ function Editable({ value: vfp, setUpdate, onChange, path, name, etiquette }) {
         document.removeEventListener("mousedown", onClick);
       };
     },
-    [setUpdate, ref, onChange, path, value, name, etiquette]
+    [setUpdate, ref, onChange, path, value, name, nameOrValue]
   );
 
   const onKeyDown = useCallback(
     function (e) {
       if (e.key === "Enter") {
         setUpdate(false);
-        onChange(path, value);
+        onChange({ path, name, value, nameOrValue });
       }
     },
-    [setUpdate, onChange, path, value]
+    [setUpdate, onChange, path, value, nameOrValue, name]
   );
 
   return (

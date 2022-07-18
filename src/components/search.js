@@ -35,7 +35,7 @@ function Search({ storeInfo, version }) {
 
   return (
     <>
-      <Tree entities={entities} editable={false} expended={true} />
+      <Tree entities={entities} editable={true} expended={true} />
       <input type="text" value={search} onChange={onChange} />
       <button onClick={onSearch}>Search!</button>
     </>

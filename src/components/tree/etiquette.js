@@ -1,7 +1,15 @@
 import { useState } from "react";
 import Updatable from "./updatable";
 
-function Etiquette({ name, path, value, onChange, editable, children }) {
+function Etiquette({
+  name,
+  path,
+  value,
+  onChange,
+  editable,
+  nameOrValue,
+  children,
+}) {
   const [update, setUpdate] = useState(false);
   if (update && editable) {
     return (
@@ -11,6 +19,7 @@ function Etiquette({ name, path, value, onChange, editable, children }) {
         onChange={onChange}
         path={path}
         name={name}
+        nameOrValue={nameOrValue}
       />
     );
   }
