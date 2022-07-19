@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import Entry from "./entry";
 import Indent from "./indent";
 import Toggle from "./toggle";
-import Etiquette from "./etiquette";
+import Etiquette, { TYPES } from "./etiquette";
 
 function Node({
   entity,
@@ -49,6 +49,7 @@ function Node({
           value={name}
           onChange={onChange}
           editable={editable && !arrayEntry}
+          nameOrValue={TYPES.name}
         >
           {name}
         </Etiquette>

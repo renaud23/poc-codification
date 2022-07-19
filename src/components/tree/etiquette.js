@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Updatable from "./updatable";
+import Editable from "./editable";
 
 export const TYPES = {
   name: "etiquette/name",
@@ -18,7 +18,7 @@ function Etiquette({
   const [update, setUpdate] = useState(false);
   if (update && editable) {
     return (
-      <Updatable
+      <Editable
         value={value}
         setUpdate={setUpdate}
         onChange={onChange}

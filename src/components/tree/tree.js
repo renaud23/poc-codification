@@ -24,6 +24,7 @@ function updateEntry(entry, { name, value, nameOrValue }) {
     }
   }
   if (nameOrValue === TYPES.value) {
+    // TODO
   }
   return entry;
 }
@@ -69,12 +70,16 @@ function crawl(entry, { paths, name, value, nameOrValue }) {
     if (Array.isArray(subEntry)) {
       // change array name
       // TODO valider le choix
+
       const next = { ...entry, [value]: subEntry };
       delete next[current];
-      return next;
+      return updateEntry(next, { name, value, nameOrValue });
     }
     // node
     if (typeof subEntry === "object") {
+      if (paths.length === 1) {
+        return updateEntry(entry, { name, value, nameOrValue });
+      }
       return {
         ...entry,
         [current]: crawl(subEntry, { paths: rest, name, value, nameOrValue }),

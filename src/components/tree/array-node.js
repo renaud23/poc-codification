@@ -3,7 +3,7 @@ import classnames from "classnames";
 import Entry from "./entry";
 import Indent from "./indent";
 import Toggle from "./toggle";
-import Etiquette from "./etiquette";
+import Etiquette, { TYPES } from "./etiquette";
 
 function ArrayNode({
   array,
@@ -50,6 +50,7 @@ function ArrayNode({
           value={name}
           onChange={onChange}
           editable={editable && !arrayEntry}
+          nameOrValue={TYPES.name}
         >{`Array[${name}]`}</Etiquette>
       </div>
       <ul className={classnames("clear-list", "tree-content", { expended })}>
