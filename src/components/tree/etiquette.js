@@ -1,10 +1,18 @@
 import { useState } from "react";
 import Editable from "./editable";
+import EditableWithType from "./editable-with-type";
 
 export const TYPES = {
   name: "etiquette/name",
   value: "etiquette/value",
 };
+
+function getComponent(withType) {
+  if (withType) {
+    return EditableWithType;
+  }
+  return Editable;
+}
 
 function Etiquette({
   name,
@@ -14,11 +22,14 @@ function Etiquette({
   editable,
   nameOrValue,
   children,
+  className,
+  withType = false,
 }) {
   const [update, setUpdate] = useState(false);
+  const EditableComponent = getComponent(withType);
   if (update && editable) {
     return (
-      <Editable
+      <EditableComponent
         value={value}
         setUpdate={setUpdate}
         onChange={onChange}
@@ -30,6 +41,7 @@ function Etiquette({
   }
   return (
     <span
+      className={className}
       onClick={function (e) {
         setUpdate(true);
       }}

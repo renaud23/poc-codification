@@ -9,7 +9,8 @@
     display: inline-block;
     height: 18px;
 
-    .etiquette {
+    .name {
+      margin-right: 4px;
     }
 
     input {
@@ -29,6 +30,10 @@
         .content {
           color: darksalmon;
         }
+      }
+
+      .boolean {
+        color: cadetblue;
       }
 
       .default {

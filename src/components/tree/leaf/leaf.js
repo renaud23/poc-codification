@@ -6,6 +6,9 @@ function Content({ value }) {
   if (value === undefined) {
     return <span className="undefined">undefined</span>;
   }
+  if (typeof value === "boolean") {
+    return <span className="boolean">{`${value}`}</span>;
+  }
   if (typeof value === "string") {
     return (
       <span className="string">
@@ -38,6 +41,7 @@ function Leaf({ name, path, value, level, onChange, editable, arrayEntry }) {
           name={name}
           editable={editable && !arrayEntry}
           nameOrValue={TYPES.name}
+          className="name"
         >{`${name} :`}</Etiquette>
         <Etiquette
           value={value}
@@ -46,6 +50,7 @@ function Leaf({ name, path, value, level, onChange, editable, arrayEntry }) {
           name={name}
           editable={editable}
           nameOrValue={TYPES.value}
+          withType={true}
         >
           <Value
             value={value}

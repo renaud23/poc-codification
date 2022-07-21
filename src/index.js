@@ -20,10 +20,8 @@ const storeInfo = {
     params: { language: "French", pattern: "[\\w.]+" },
   },
   version: "1",
-  test: [
-    ["label", "id"],
-    [1, 2],
-  ],
+  test: true,
+  test2: {},
 };
 
 root.render(
