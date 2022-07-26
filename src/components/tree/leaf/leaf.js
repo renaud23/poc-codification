@@ -3,6 +3,9 @@ import Etiquette from "../etiquette";
 import { TYPES } from "../etiquette";
 
 function Content({ value }) {
+  if (value === null) {
+    return <span className="null">null</span>;
+  }
   if (value === undefined) {
     return <span className="undefined">undefined</span>;
   }

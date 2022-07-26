@@ -26,7 +26,7 @@ function Entry({
       />
     );
   }
-  if (typeof value === "object") {
+  if (value && typeof value === "object") {
     return (
       <Node
         entity={value}

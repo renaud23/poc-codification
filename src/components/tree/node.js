@@ -50,6 +50,7 @@ function Node({
           onChange={onChange}
           editable={editable && !arrayEntry}
           nameOrValue={TYPES.name}
+          className="label-name"
         >
           {name}
         </Etiquette>

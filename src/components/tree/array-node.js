@@ -51,6 +51,7 @@ function ArrayNode({
           onChange={onChange}
           editable={editable && !arrayEntry}
           nameOrValue={TYPES.name}
+          className="label-name"
         >{`Array[${name}]`}</Etiquette>
       </div>
       <ul className={classnames("clear-list", "tree-content", { expended })}>

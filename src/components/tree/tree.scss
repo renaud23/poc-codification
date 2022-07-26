@@ -5,12 +5,25 @@
 
   padding: 12px 5px;
 
-  .leaf {
+  .label-name {
+    margin-right: 4px;
+    &:hover {
+      color: rgb(30, 30, 30);
+      background-color: bisque;
+    }
+  }
+
+  .leaf,
+  tree-label {
     display: inline-block;
     height: 18px;
 
     .name {
       margin-right: 4px;
+      &:hover {
+        color: rgb(30, 30, 30);
+        background-color: bisque;
+      }
     }
 
     input {
@@ -19,6 +32,10 @@
     }
 
     .value {
+      .null {
+        color: red;
+        font-style: italic;
+      }
       .undefined {
         color: red;
       }
