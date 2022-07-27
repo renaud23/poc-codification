@@ -32,6 +32,13 @@ function Tree({
     [clone]
   );
 
+  const handleRemove = useCallback(
+    function (path) {
+      console.log("remove", { clone, path });
+    },
+    [clone]
+  );
+
   return (
     <div className={classnames("tree")}>
       <Entry
@@ -40,6 +47,7 @@ function Tree({
         level={0}
         expended={expended}
         onChange={handleChange}
+        onRemove={handleRemove}
         editable={editable}
       />
     </div>

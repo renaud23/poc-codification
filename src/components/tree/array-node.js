@@ -14,6 +14,7 @@ function ArrayNode({
   editable,
   expended: ex,
   arrayEntry,
+  onRemove,
 }) {
   const [expended, setExpended] = useState(ex);
   const toggle = useCallback(
@@ -34,6 +35,7 @@ function ArrayNode({
           onChange={onChange}
           editable={editable}
           arrayEntry={true}
+          onRemove={onRemove}
         />
       </li>
     );

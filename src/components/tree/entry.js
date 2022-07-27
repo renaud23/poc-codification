@@ -11,6 +11,7 @@ function Entry({
   onChange,
   editable,
   arrayEntry,
+  onRemove,
 }) {
   if (Array.isArray(value)) {
     return (
@@ -23,6 +24,7 @@ function Entry({
         onChange={onChange}
         editable={editable}
         arrayEntry={arrayEntry}
+        onRemove={onRemove}
       />
     );
   }
@@ -35,6 +37,7 @@ function Entry({
         expended={expended}
         path={path}
         onChange={onChange}
+        onRemove={onRemove}
         editable={editable}
         arrayEntry={arrayEntry}
       />
@@ -48,6 +51,7 @@ function Entry({
       path={path}
       value={value}
       onChange={onChange}
+      onRemove={onRemove}
       editable={editable}
       arrayEntry={arrayEntry}
     />
