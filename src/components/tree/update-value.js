@@ -16,21 +16,12 @@ function updateEntry(entry, { name, value, nameOrValue, type }) {
     }
     return entry;
   }
-  if (nameOrValue === TYPES.value) {
-    // const previous = entry[name];
-    // console.log(entry, { name, value, previous });
-    // if (typeof previous === "boolean") {
-    //   return { ...entry, [name]: Boolean(`${value}`) };
-    // }
-    // if (typeof previous === "number") {
-    //   return { ...entry, [name]: Number(value) };
-    // }
-    try {
-      console.log({ type });
 
+  if (nameOrValue === TYPES.value) {
+    try {
       switch (type) {
         case "boolean":
-          return { ...entry, [name]: Boolean(`${value}`) };
+          return { ...entry, [name]: `${value}` === "true" };
         case "number":
           return { ...entry, [name]: Number(`${value}`) };
         case "string":
@@ -52,7 +43,6 @@ function updateEntry(entry, { name, value, nameOrValue, type }) {
 }
 
 function crawl(entry, { paths, name, value, nameOrValue, type }) {
-  // console.log({ entry, paths });
   const [current, ...rest] = paths;
 
   if (current) {
@@ -93,12 +83,12 @@ function crawl(entry, { paths, name, value, nameOrValue, type }) {
     const subEntry = entry[current];
     // array node
     if (Array.isArray(subEntry)) {
-      return updateEntry(entry, { name, value, nameOrValue });
+      return updateEntry(entry, { name, value, nameOrValue, type });
     }
     // node
     if (typeof subEntry === "object") {
       if (paths.length === 1) {
-        return updateEntry(entry, { name, value, nameOrValue });
+        return updateEntry(entry, { name, value, nameOrValue, type });
       }
       return {
         ...entry,

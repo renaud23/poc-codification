@@ -2,6 +2,14 @@ import Indent from "../indent";
 import Etiquette from "../etiquette";
 import { TYPES } from "../etiquette";
 
+function Boolean({ value }) {
+  return (
+    <span className="boolean">
+      <input type="checkbox" defaultChecked={value} />
+    </span>
+  );
+}
+
 function Content({ value }) {
   if (value === null) {
     return <span className="null">null</span>;
@@ -10,7 +18,7 @@ function Content({ value }) {
     return <span className="undefined">undefined</span>;
   }
   if (typeof value === "boolean") {
-    return <span className="boolean">{`${value}`}</span>;
+    return <Boolean value={value} />;
   }
   if (typeof value === "string") {
     return (

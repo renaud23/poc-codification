@@ -5,9 +5,38 @@ function getType(value) {
     return "undefined";
   }
   if (value === null) {
-    return null;
+    return "null";
   }
   return typeof value;
+}
+
+function getValue(value) {
+  if (value === undefined) {
+    return "undefined";
+  }
+  if (value === null) {
+    return "null";
+  }
+
+  return `${value}`;
+}
+
+function InputText({ value, setValue, onKeyDown }) {
+  return (
+    <input
+      type="text"
+      value={getValue(value)}
+      onClick={(e) => {
+        e.stopPropagation();
+        e.preventDefault();
+      }}
+      onKeyDown={onKeyDown}
+      onChange={function (e) {
+        e.stopPropagation();
+        setValue(e.target.value);
+      }}
+    />
+  );
 }
 
 function EditableWithType({
@@ -66,19 +95,7 @@ function EditableWithType({
       }}
       onKeyDown={onKeyDown}
     >
-      <input
-        type="text"
-        value={value || ""}
-        onClick={(e) => {
-          e.stopPropagation();
-          e.preventDefault();
-        }}
-        onKeyDown={onKeyDown}
-        onChange={function (e) {
-          e.stopPropagation();
-          setValue(e.target.value);
-        }}
-      ></input>
+      <InputText value={value} setValue={setValue} onKeyDown={onKeyDown} />
       <select defaultValue={type} onChange={changeType}>
         <option value="string">string</option>
         <option value="number">number</option>
